@@ -25,3 +25,4 @@ feign:
 mybatis:
   mapper-locations: classpath:cn/mapping/*.xml
   type-aliases-package: yt.cn.log.pojo
+#·¶ÎÄöÎÄã¸öÉµÃ±´óÉµÃ±
