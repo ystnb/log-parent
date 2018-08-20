@@ -1,0 +1,28 @@
+server:
+   port: 8002
+spring:
+  application:
+    name: log-web
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+  #  url: jdbc:mysql://192.168.140.165:3306/cloud_log?characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/blog?characterEncoding=utf-8
+    username: root
+    password: 123456
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false   # 此处为不缓存页面
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 10
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/eureka/
+feign:
+  hystrix:
+    enabled: true
+ 
+mybatis:
+  mapper-locations: classpath:cn/mapping/*.xml
+  type-aliases-package: yt.cn.log.pojo
