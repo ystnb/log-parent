@@ -1,6 +1,4 @@
-﻿$(document).ready(function(){  
-     $("#fAuthor").val(localStorage.getItem("nickname"));
-    }); 
+﻿
 function subject(){
         var datajson=  $("form").serializeObject();
 		

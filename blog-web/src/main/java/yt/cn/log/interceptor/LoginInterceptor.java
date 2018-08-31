@@ -9,14 +9,17 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSONObject;
+
 import yt.cn.log.common.utils.CookieUtils;
+import yt.cn.log.controller.BaseURLService;
+import yt.cn.log.pojo.lUser;
 import yt.cn.log.service.SsoFeignClient;
-import yt.cn.log.service.lUserService;
 
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
 	@Autowired
-	private lUserService userService;
+	private BaseURLService urlService;
 	@Autowired
 	private SsoFeignClient ssoFeignClient;
 	
@@ -25,18 +28,22 @@ public class LoginInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		/*System.out.println("SSO======单点登录系统");
+		lUser user=null;
+		System.out.println(urlService.SSO_BASE_URL+urlService.SSO_PAGE_LOGIN);
 		String token=CookieUtils.getCookieValue(request, "TT_TOKEN");
+		String url="http://"+request.getServerName()+":"+request.getServerPort()+request.getRequestURI();
 		if(StringUtils.isBlank(token)){
-			response.sendRedirect("login");
+			response.sendRedirect(urlService.SSO_BASE_URL+urlService.SSO_PAGE_LOGIN+"?redirect="+url);
 			return false;
 		}
-		String user=userService.getByToken(token);
-		if(StringUtils.isBlank(user)){
-			ssoFeignClient.login();
+		String userJson=ssoFeignClient.token(token);
+		if(StringUtils.isBlank(userJson)){
+			response.sendRedirect(urlService.SSO_BASE_URL+urlService.SSO_PAGE_LOGIN+"?redirect="+url);
 			return false;
-		}*/
-		
+		}
+		JSONObject jsonObject=JSONObject.parseObject(userJson);
+		user=JSONObject.toJavaObject(jsonObject, lUser.class);
+		request.setAttribute("user",user);
 		return true;
 	}
 

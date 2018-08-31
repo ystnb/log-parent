@@ -1,26 +1,22 @@
 <!doctype html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8">
-<title>iyt博客</title>
-<meta name="keywords" content="iyt博客" />
-<meta name="description" content="iyt博客" />
-<link href="css/base.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<!--[if lt IE 9]>
-<script src="js/modernizr.js"></script>
-<![endif]-->
+<link th:href="@{/css/style.css}" rel="stylesheet"/>
+
 </head>
 <body>
 <header>
-  <nav class="topnav" id="topnav"><a href="index.html"><span>首页</span><span class="en">Protal</span></a><a href="little.html"><span>点点滴滴</span><span class="en">A little</span></a><a href="forum.html"><span>论坛</span><span class="en">Forum</span></a><a href="log.html"><span>版本日志</span><span class="en">Version log</span></a><a href="advice.html"><span>宝贵意见</span><span class="en">Valuable advice</span></a><a href="personal.html"><span>个人中心</span><span class="en">Personal Center</span></a>
-  <a href="javascript:void(0)" id="sigoon"><span><button onclick="login()">登录</button>   <button onclick="register()">注册</button></span><span class="en" >login  register</span></a></nav>
-  </nav>
+ <div th:replace="common/header::html" ></div>
 </header>
 <article class="blogs">
-<h1 class="t_nav"><span>记录工作中，业务生活中，个人兴趣爱好等等的点点滴滴不论技术情感！<input style="" id="q"><button onclick="search()">搜索</button></span><a href="javascript:void(0)" class="n2">点点滴滴</a></h1>
+<h1 class="t_nav"><span>记录工作中，业务生活中，个人兴趣爱好等等的点点滴滴不论技术情感！<input type="text" th:value="${q}" id="q"/><button onclick="search()">搜索</button></span><a href="javascript:void(0)" class="n2">点点滴滴</a></h1>
 <div class="newblog left" id="blogteams">
-  
+  <div th:each="little:${results}">
+  		<h2 th:text="${little.title}"></h2><p class="dateview">作者：<span th:text="${little.author}"></span>
+  		<span>分类:<span th:text="${little.attribute}"></span></span></p>
+  		<ul class="nlist"><p style="width:400px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;" th:text="${little.content}">
+			</p><a th:href="@{'/blog/deial/'+${little.id}}"   class="readmore">阅读全文>></a></ul>
+  </div>
     
  
 </div>
@@ -28,7 +24,7 @@
    <div class="rnav">
       <ul>
        <li class="rnav1"><a href="Javascript:void(0)" onclick="advice()" target="_blank">记录点点</a></li>
-       <li class="rnav2"><a href="javascript:void(0)" target="_blank">兴趣人生</a></li>
+       <li class="rnav2"><a href="javascript:void(0)" >兴趣人生</a></li>
 
      </ul>      
     </div>
@@ -37,18 +33,14 @@
       <p>最新<span>文章</span></p>
     </h3>
    <ul class="rank" id="timedesc"> 
+    <li th:each="desc:${descBlogs}"><a th:href="@{'/blog/deial/'+${desc.id}}"  th:text="${desc.title}"></a></li>
     </ul>
     <h3 class="ph">
       <p>点击<span>排行</span></p>
     </h3>
     <ul class="paih" id="ratedesc">
+        <li th:each="date:${dateBlogs}"><a th:href="@{'/blog/deial/'+${date.id}}"  th:text="${date.title}"></a></li>
     </ul>
-    </div>
-    <div class="visitors">
-      <h3><p>最近访客</p></h3>
-      <ul>
-
-      </ul>
     </div>
      <!-- Baidu Button BEGIN -->
     <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a class="shareCount"></a></div>
@@ -61,13 +53,9 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 </aside>
 </article>
 <footer>
-  <p>版权所有 - yuantao yt0902@163.com</p>
+   <div th:replace="common/footer::html" ></div>
 </footer>
-<script src="js/silder.js"></script>
-<script src="js/jquery-1.9.1.js"></script>
-<script src="js/jquery.cookie.js"></script>
-<script src="js/little.js"></script>
-<script src="js/top.js"></script>
+<script th:src="@{/js/little.js}"></script>
 <script>
 
 

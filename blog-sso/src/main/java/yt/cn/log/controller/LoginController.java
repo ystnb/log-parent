@@ -1,18 +1,16 @@
 package yt.cn.log.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import com.alibaba.fastjson.JSON;
 
@@ -28,6 +26,7 @@ public class LoginController {
 	
 	@Autowired
 	private RedisService redisService;
+
 	@Autowired
 	private lUserService userService;
 	
@@ -37,17 +36,18 @@ public class LoginController {
 		if(StringUtils.isBlank(userToken)){
 			return null;
 		}else{
-			redisService.set("TT_TOKEN_"+token, userToken, 60*60*1000);
+			redisService.set("TT_TOKEN_"+token, userToken, 60*60*60);
 		}
 		return userToken;
 	}
 	@PostMapping("login")
-	public String login(@RequestParam("nickname")String nickname,
-			@RequestParam("password")String password){
+	public String login(@RequestParam("email")String email,
+			@RequestParam("password")String password,HttpServletRequest request,HttpServletResponse 
+			response){
 		String token="";
 		LogResult logResult=null;
 		 try {
-			 token=userService.getByNameAndPwd(nickname, password);
+			 token=userService.getByExample(email, password,request,response);
 			if(!StringUtils.isBlank(token)){
 				logResult=logResult.ok(token);
 			}else{
@@ -60,15 +60,21 @@ public class LoginController {
 		}
 		return JSON.toJSON(logResult).toString();
 	}
-	@PostMapping("addUser")
-	public String addUser(@RequestBody lUser user){
+	
+	@PostMapping("check")
+	public String check(@RequestParam("email") String email){
+		lUser user=null;
 		try {
-			userService.insertBody(user);
+			user=userService.getEmail(email);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";
 		}
-		return "success";
+		if(user==null){
+			return "success";
+		}else{
+			return "existed";
+		}
 		
 	}
 

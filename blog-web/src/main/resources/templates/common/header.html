@@ -2,15 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"/>
+<title>iyt博客</title>
+<meta name="keywords" content="" />
+<meta name="description" content="iyt博客" />
+<link th:href="@{/css/base.css}" rel="stylesheet"/>
 </head>
 <body>
-<nav class="topnav" id="topnav"><a th:href="@{/index}"><span>首页</span><span class="en">Protal</span></a><a th:href="@{/blog/blog}"><span>点点滴滴</span><span class="en">A little</span></a><a href="forum.html"><span>论坛</span><span class="en">Forum</span></a><a href="log.html"><span>版本日志</span><span class="en">Version log</span></a><a href="advice.html"><span>宝贵意见</span><span class="en">Valuable advice</span></a><a href="personal.html"><span>个人中心</span><span class="en">Personal Center</span></a>
-  <a href="javascript:void(0)"  id="sigoon"><span><button onclick="login()">登录</button>   <button onclick="register()">注册</button></span><span class="en" >login  register</span></a></nav>
+<nav class="topnav" id="topnav"><a th:href="@{/}"><span>首页</span><span class="en">Protal</span></a><a th:href="@{/blog/blog}"><span>点点滴滴</span><span class="en">A little</span></a>
+<a th:href="@{/forum/forum}"><span>论坛</span><span class="en">Forum</span></a>
+<a th:href="@{/log/weAre}"><span>版本日志</span><span class="en">Version log</span></a>
+<a th:href="@{/log/advice}"><span>宝贵意见</span><span class="en">Valuable advice</span></a>
+<a th:href="@{/luser/personal}"><span>个人中心</span>
+<span class="en" style="top:200px;"><button onclick="login()">登录</button>&nbsp;<button onclick="register()">注册</button></span>
+</a>
+</nav>
   <nav></nav>
-  
-  <script src="js/silder.js"></script>
-<script src="js/jquery-1.9.1.js"></script>
-<script src="js/jquery.cookie.js"></script>
-<script src="js/top.js"></script>
+ <script type="text/javascript">
+ function login(){
+	 setTimeout("javascript:location.href='http://www.ijavo.cn:8020/login'", 0);
+ }
+ function register(){
+	 setTimeout("javascript:location.href='http://www.ijavo.cn:8020/register'", 0);
+ }
+ </script>
 </body>
 </html>

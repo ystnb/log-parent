@@ -121,15 +121,12 @@
   
   <modules>
   	<module>log-eureka-server</module>
-  	<module>log-solr</module>
   	<module>log-pojo</module>
   	<module>log-service</module>
   	<module>log-mapper</module>
-  	<module>log-web</module>
   	<module>log-common</module>
   	<module>log-rest</module>
   	<module>log-queue</module>
-  	<module>log-sso</module>
   	<module>blog-eureka-server</module>
   	<module>blog-web</module>
   	<module>blog-sso</module>

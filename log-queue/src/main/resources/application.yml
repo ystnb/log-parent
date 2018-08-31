@@ -4,7 +4,7 @@ spring:
     application:
       name: log-queue
     kafka:
-      bootstrap-servers: 192.168.140.129:9092
+      bootstrap-servers: 140.143.227.194:9092
       consumer:
          group-id: group1
 eureka:
@@ -13,4 +13,4 @@ eureka:
     leaseExpirationDurationInSeconds: 10
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://140.143.227.194:8761/eureka/

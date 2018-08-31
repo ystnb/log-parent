@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="blog-eureka-server" />
+        <module name="blog-solr" />
+        <module name="blog-sso" />
+        <module name="blog-web" />
+        <module name="log-common" />
+        <module name="log-eureka-server" />
+        <module name="log-mapper" />
+        <module name="log-pojo" />
+        <module name="log-queue" />
+        <module name="log-rest" />
+        <module name="log-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="blog-eureka-server" target="1.8" />
+      <module name="blog-solr" target="1.8" />
+      <module name="blog-sso" target="1.8" />
+      <module name="blog-web" target="1.8" />
+      <module name="log-common" target="1.8" />
+      <module name="log-eureka-server" target="1.8" />
+      <module name="log-mapper" target="1.8" />
+      <module name="log-parent" target="1.8" />
+      <module name="log-pojo" target="1.8" />
+      <module name="log-queue" target="1.8" />
+      <module name="log-rest" target="1.8" />
+      <module name="log-service" target="1.8" />
+      <module name="log-solr" target="1.8" />
+      <module name="log-sso" target="1.8" />
+      <module name="log-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

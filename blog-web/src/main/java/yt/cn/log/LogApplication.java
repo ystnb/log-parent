@@ -11,7 +11,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 @SpringBootApplication
 @EnableCircuitBreaker
 @EnableFeignClients
-public class LogApplication extends SpringBootServletInitializer{
+public class LogApplication  extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(LogApplication.class).web(true).run(args);

@@ -1,24 +1,14 @@
 <!doctype html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>iyt博客</title>
-<meta name="keywords" content="iyt博客" />
-<meta name="description" content="iyt博客" />
-<link href="css/base.css" rel="stylesheet">
-<link href="css/share.css" rel="stylesheet">
-<!--[if lt IE 9]>
-<script src="js/modernizr.js"></script>
-<![endif]-->
+<link th:href="@{/css/share.css}" rel="stylesheet"/>
 </head>
 <body>
 <header>
- <nav class="topnav" id="topnav"><a href="index.html"><span>首页</span><span class="en">Protal</span></a><a href="little.html"><span>点点滴滴</span><span class="en">A little</span></a><a href="forum.html"><span>论坛</span><span class="en">Forum</span></a><a href="log.html"><span>版本日志</span><span class="en">Version log</span></a><a href="advice.html"><span>宝贵意见</span><span class="en">Valuable advice</span></a><a href="personal.html"  ><span>个人中心</span><span class="en">Personal Center</span></a>
-  <a href="javascript:void(0)" id="sigoon"><span><button onclick="login()">登录</button>   <button onclick="register()">注册</button></span><span class="en" >login  register</span></a></nav>
-  </nav>
+<div th:replace="common/header::html" ></div>
 </header>
 <article class="blogs">
-<h1 class="t_nav">论坛首页          <input  id="q"><button onclick="fourmsearch()">搜索</button></h1>
+<h1 class="t_nav">论坛首页          <input  id="q"/><button onclick="fourmsearch()">搜索</button></h1>
 <div class="newblog left" id="forumlist">
   
     <div class="line"></div>
@@ -46,15 +36,13 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 </aside>
 </article>
 <footer>
-  <p>版权所有 - yuantao yt0902@163.com</p>
+     <div th:replace="common/footer::html" ></div>
 </footer>
-<script src="js/silder.js"></script>
-<script src="js/jquery-1.9.1.js"></script>
-<script src="js/jquery.cookie.js"></script>
-<script src="js/fourm.js"></script>
-<script src="js/top.js"></script>
+<script th:src="@{/js/fourm.js}"></script>
 <script>
 
 
 
 </script>
+</body>
+</html>

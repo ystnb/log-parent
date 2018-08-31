@@ -1,12 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"/>
-<title>iyt博客</title>
-<meta name="keywords" content="" />
-<meta name="description" content="iyt博客" />
-<link href="css/base.css" rel="stylesheet"/>
-<link href="css/index.css" rel="stylesheet"/>
+<link th:href="@{/css/index.css}" rel="stylesheet"/>
 <!--[if lt IE 9]>
 <script src="js/modernizr.js"></script>
 <![endif]-->
@@ -14,7 +9,7 @@
 <body>
 <header>
 <div th:replace="common/header::html" ></div>
-</header><br/>
+</header>
 <div class="banner">
   <section class="box">
     <ul class="texts">
@@ -30,7 +25,14 @@
   <h2 class="title_tj">
     <p>文章<span>推荐</span></p>
   </h2>
-  <div class="bloglist left" id="blog" >    
+  <div class="bloglist left" id="blog" >   
+  <div th:each="result:${results}">
+  	<h3 th:text="${result.title}"></h3>
+  	<ul>
+  		<p style="width:200px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;" th:text="${result.content}"></p>
+  		<span><a  th:href="@{'/blog/deial/'+${result.id}}" class="readmore">阅读全文>></a></span></ul><p class="dateview">
+	&nbsp;作者：<span th:text="${result.author}"></span>博客：<span th:text="${result.attribute}"></span></p>
+  </div> 
   </div>
   <aside class="right">
     <div class="weather"><iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&amp;id=12&amp;icon=1&amp;num=1"></iframe></div>
@@ -39,12 +41,13 @@
       <p>最新<span>文章</span></p>
     </h3>
     <ul class="rank" id="timedesc"> 
-    
+    <li th:each="desc:${descBlogs}"><a th:href="@{'/blog/deial/'+${desc.id}}"  th:text="${desc.title}"></a></li>
     </ul>
     <h3 class="ph">
       <p>点击<span>排行</span></p>
     </h3>
     <ul class="paih" id="ratedesc">
+        <li th:each="date:${dateBlogs}"><a th:href="@{'/blog/deial/'+${date.id}}"  th:text="${date.title}"></a></li>
     </ul>
    
     </div>  
@@ -60,8 +63,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 <footer>
   <div th:replace="common/footer::html" ></div>
 </footer>
-<script src="js/getDateTime.js"></script>
-<script src="js/index.js"></script>
+<script th:src="@{/js/getDateTime.js}"></script>
+<script th:src="@{/js/index.js}"></script>
 
 </body>
 </html>

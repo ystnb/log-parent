@@ -23,6 +23,12 @@ public class HystrixSsoClient implements SsoFeignClient{
 		return "服务正忙，请稍后！";
 	}
 
+	@Override
+	public String Userlogin() {
+		
+		return null;
+	}
+
 
 
 	

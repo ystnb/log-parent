@@ -4,18 +4,22 @@ import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
+import com.alibaba.fastjson.JSONObject;
 
 import yt.cn.log.pojo.Blog;
 import yt.cn.log.pojo.Forum;
 import yt.cn.log.pojo.Replies;
 import yt.cn.log.service.BlogService;
 import yt.cn.log.service.ForumService;
+import yt.cn.log.service.KafKaFeignClient;
 import yt.cn.log.service.RepliesService;
 
 /**
@@ -24,7 +28,7 @@ import yt.cn.log.service.RepliesService;
  *
  */
 @RequestMapping("replies")
-@RestController
+@Controller
 public class RepliesController {
 	
 	@Autowired
@@ -34,6 +38,9 @@ public class RepliesController {
 
 	@Autowired
 	private ForumService forumService;
+	
+	@Autowired
+	private KafKaFeignClient kaFeignClient;
 	
 	/**
 	 * 回复帖子
@@ -58,21 +65,36 @@ public class RepliesController {
 		return "ok";
 	}
 	/**
+	 * 进入添加博客
+	 * @param blog
+	 * @return
+	 */
+	@GetMapping("addBlog")
+	public String addBlog(){
+		return "/addBlog";
+	}
+	@GetMapping("addforum")
+	public String addforum(){
+		return "/addForum";
+	}
+	/**
 	 * 添加博客
 	 * @param blog
 	 * @return
 	 */
-	@PostMapping("addblog")
-	public String addblog(@RequestBody Blog blog){
+	@PostMapping("saveBlog")
+	public String saveBlog(@ModelAttribute Blog blog){
+		
 		blog.setId(UUID.randomUUID().toString());
 		blog.setCreateTime(new Date());
 		try {
 			blogService.insertBlog(blog);
+			kaFeignClient.blogKafka(JSONObject.toJSONString(blog));
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "error";
+			return "redirect:/replies/addBlog";
 		}
-		return "ok";
+		return "redirect:/blog/blog";
 		
 	}
 	/**
@@ -80,17 +102,19 @@ public class RepliesController {
 	 * @param forum
 	 * @return
 	 */
-	@PostMapping("addForum")
-	public String addForum(@RequestBody Forum forum){
+	@PostMapping("saveForum")
+	public String addForum(@ModelAttribute Forum forum){
 		forum.setId(UUID.randomUUID().toString());
 		forum.setCreateTime(new Date());
 		try {
 			forumService.insertBody(forum);
+			kaFeignClient.forumKafka(JSONObject.toJSONString(forum));
 		} catch (Exception e) {
-			return "添加失败请重试";
+			return "redirect:/replies/addForum";
 		}
-		return "ok";
+		return "redirect:/forum/forum";
 	}
+	
 
 	
 }

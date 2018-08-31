@@ -189,7 +189,7 @@ public final class CookieUtils {
         	 e.printStackTrace();
         }
     }
-
+  
     /**
      * 得到cookie的域名
      */
@@ -206,7 +206,9 @@ public final class CookieUtils {
             serverName = serverName.substring(0, end);
             final String[] domains = serverName.split("\\.");
             int len = domains.length;
-            if (len > 3) {
+            if(len<=4 &&len>3){
+            	 domainName =domains[len - 4] +"."+domains[len - 3] + "." + domains[len - 2] + "." + domains[len - 1];
+            }else if (len > 3) {
                 // www.xxx.com.cn
                 domainName = "." + domains[len - 3] + "." + domains[len - 2] + "." + domains[len - 1];
             } else if (len <= 3 && len > 1) {

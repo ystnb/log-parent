@@ -1,6 +1,7 @@
 package yt.cn.log.service;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,5 +21,7 @@ public interface SsoFeignClient {
 			@RequestParam("password")String password);
 	@PostMapping("sso/addUser")
 	String addUser(@RequestBody lUser user);
+	@GetMapping("login")
+	public String Userlogin();
 
 }

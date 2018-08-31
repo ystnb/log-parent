@@ -8,7 +8,6 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 @EnableEurekaClient
 @SpringBootApplication
-@EnableFeignClients
 public class SsoApplication extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {

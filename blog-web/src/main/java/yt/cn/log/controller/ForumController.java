@@ -1,31 +1,30 @@
 package yt.cn.log.controller;
 
-import java.util.Date;
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 
 import yt.cn.log.common.result.ForumRepliesResult;
-import yt.cn.log.pojo.Forum;
 import yt.cn.log.service.ForumService;
 import yt.cn.log.service.RepliesService;
+import yt.cn.log.service.SolrFeignClient;
 
 @RequestMapping("forum")
-@RestController
+@Controller
 public class ForumController {
 	
 	@Autowired
 	private ForumService forumService;
 	@Autowired
 	private RepliesService repliesService;
+	
+	@Autowired
+	private SolrFeignClient feignClient;
 	
 	@GetMapping("deail/{id}")
 	public String deail(@PathVariable String id){
@@ -42,4 +41,10 @@ public class ForumController {
 		return forumJson;
 	}
 	
+	@GetMapping("forum")
+	public String forum(Model model){
+		String forumSolr=feignClient.forumQuery("*:*");
+		System.out.println(forumSolr);
+		return "/forum";
+	}
 }
