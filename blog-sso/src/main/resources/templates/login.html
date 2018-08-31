@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>欢迎</title>
+  <link th:href="@{/css/login.css}" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" th:href="@{/css/normalize.min.css}"/>
+   <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+
+<body>
+
+  <div class="form">
+      
+     <h1 align="center">欢迎登录</h1>
+      
+    
+        
+        <div id="login">   
+          <h1>Welcome Back!</h1>
+          
+          <form id="loginform" >
+          
+            <div class="field-wrap">
+            <label>
+              Email Address<span class="req">*</span>
+            </label>
+            <input type="email" required="required" name="email" autocomplete="off"/>
+          </div>
+          <div class="field-wrap">
+            <label>
+              Password<span class="req">*</span>
+            </label>
+            <input type="password" name="password"  required="required" autocomplete="off"/>
+          </div>
+          
+          <p class="forgot"><a th:href="@{register}">Sign Up</a></p>
+          
+             <input type="submit" class="button button-block" value="Log In"/>
+          </form>
+
+        </div>
+        <input type="hidden" th:value="${redirect}" id="redirect"/>
+      </div><!-- tab-content -->
+      
+    <script th:src="@{js/jquery.min.js}"></script>
+    <script  th:src="@{js/index.js}"></script>
+    <script type="text/javascript">
+    var redirectUrl= $("#redirect").val();
+    $("#loginform").submit(function(){
+        $.ajax({
+            async: false,
+            type: "POST",
+            url:'/sso/login',
+            data:$("#loginform").serialize(),
+            dataType: "json",
+            success: function (result) {
+            	if(result.status==200){
+            		alert("登录成功");
+            		if(redirectUrl!=""){
+            			  setTimeout("javascript:location.href='"+redirectUrl+"'", 0);
+            		}else{
+            		
+            			 setTimeout("javascript:location.href='http://www.ijavo.cn'", 0);
+            		}
+            	}else{
+            		alert("邮箱或密码错误，请重新输入！");
+            		setTimeout("javascript:location.href='http://www.ijavo.cn:8020/login'", 0);
+            	}
+                
+            }
+        })
+    })
+   
+    </script>
+
+</body>
+</html>

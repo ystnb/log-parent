@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>欢迎</title>
+  <link th:href="@{/css/login.css}" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" th:href="@{/css/normalize.min.css}"/>
+   <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+
+<body>
+
+  <div class="form">
+      
+       <h1 align="center">欢迎注册<a th:href="@{/}">登录</a></h1>
+      
+      <div class="tab-content">
+        <div id="signup">   
+          <h1>Sign Up for Free</h1>
+          
+          <form th:action="@{/addUser}" method="post">
+          
+          <div class="top-row">
+            <div class="field-wrap">
+              <label>
+                NIck Name<span class="req">*</span>
+              </label>
+              <input type="text" name="nickname" required="required" autocomplete="off" />
+            </div>
+        
+            <div class="field-wrap">
+              <label>
+                First Name<span class="req">*</span>
+              </label>
+              <input type="text" required="required" name="name" autocomplete="off"/>
+            </div>
+          </div>
+
+          <div class="field-wrap">
+            <label>
+              Email Address<span class="req">*</span>
+            </label>
+            <input type="email" id="email" required="required" name="email" autocomplete="off" onblur="check()"/>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Set A Password<span class="req">*</span>
+            </label>
+            <input type="password" name="password"  required="required" autocomplete="off"/>
+          </div>
+          <input type="submit" class="button button-block" value="Get Started"/>
+          </form>
+
+        </div>
+        
+        <div id="login">   
+      
+          
+       
+
+        </div>
+        
+      </div><!-- tab-content -->
+      
+</div> <!-- /form -->
+  <script th:src="@{/js/jquery.min.js}"></script>
+
+    <script  th:src="@{/js/jquery-1.9.1.js}"></script>
+    <script  th:src="@{/js/index.js}"></script>
+    <script type="text/javascript">
+    function check(){
+    	var email=$("#email").val();
+		$.ajax({
+			type: 'post',
+			url: '/sso/check/',
+			data: {'email':email},
+			dataType: 'text',
+			success: function(result) {
+				if(result=="existed"){
+					alert("此邮箱已存在！");
+					$("#email").val("");
+				}
+				  
+			}
+		});
+    	
+    }
+    
+    </script>
+
+</body>
+</html>

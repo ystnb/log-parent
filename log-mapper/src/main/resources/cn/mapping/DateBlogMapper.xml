@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="yt.cn.log.dao.DateBlogMapper" >
+  <select id="getDateList" resultType="yt.cn.log.pojo.DescBlog">
+		SELECT 
+		id, title,
+		 create_time, author,
+		  edit_time, attribute, 
+		  disabled,frequency,content
+		FROM
+			date_blog order by create_time desc
+	</select>
+  
+  
+</mapper>
