@@ -10,9 +10,9 @@ import yt.cn.log.service.hystrix.HystrixSolrClient;
 public interface SolrFeignClient {
 	
 	@GetMapping("blog/query")
-	String blogQuery(@RequestParam("q")String q);
+	String blogQuery(@RequestParam("q") String q);
 	@GetMapping("forum/query")
-	String forumQuery(@RequestParam("q")String q);
+	String forumQuery(@RequestParam("q") String q);
 	
 
 }

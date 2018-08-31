@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface WriteFeignClient {
 	
 	@GetMapping("blog/writeBlog")
-	void writeBlog(@RequestParam("blog")String blogjson) throws Exception;
+	void writeBlog(@RequestParam("blog") String blogjson) throws Exception;
 	@GetMapping("forum/writeForum")
-	void writeForum(@RequestParam("forum")String forumjson) throws Exception;
+	void writeForum(@RequestParam("forum") String forumjson) throws Exception;
 }

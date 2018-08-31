@@ -8,8 +8,8 @@ import yt.cn.log.pojo.lUser;
 public interface lUserService {
 	void insertBody(lUser user);
 	
-	String getByExample(String email,String password,HttpServletRequest request,HttpServletResponse 
-			response);
+	String getByExample(String email, String password, HttpServletRequest request, HttpServletResponse
+            response);
 	
 	lUser getEmail(String email);
 	

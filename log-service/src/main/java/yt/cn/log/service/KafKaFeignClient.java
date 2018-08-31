@@ -12,8 +12,8 @@ import yt.cn.log.pojo.Forum;
 public interface KafKaFeignClient {
 	
 	@GetMapping("blogKafka")
-	public void blogKafka(@RequestParam("blog")String blog);
+	public void blogKafka(@RequestParam("blog") String blog);
 	@GetMapping("forumKafka")
-	public void forumKafka(@RequestParam("forum")String forum);
+	public void forumKafka(@RequestParam("forum") String forum);
 
 }

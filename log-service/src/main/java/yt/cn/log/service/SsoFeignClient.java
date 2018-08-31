@@ -15,10 +15,10 @@ import yt.cn.log.service.hystrix.HystrixSsoClient;
 public interface SsoFeignClient {
 	
 	@GetMapping("sso/token/{token}")
-	String token(@PathVariable("token")String token);
+	String token(@PathVariable("token") String token);
 	@PostMapping("sso/login")
-	String login(@RequestParam("nickname")String nickname,
-			@RequestParam("password")String password);
+	String login(@RequestParam("nickname") String nickname,
+                 @RequestParam("password") String password);
 	@PostMapping("sso/addUser")
 	String addUser(@RequestBody lUser user);
 	@GetMapping("login")

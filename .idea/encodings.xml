@@ -4,21 +4,28 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-eureka-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-eureka-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-eureka-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-eureka-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-solr" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-solr" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-solr" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-solr" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-sso" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-sso" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-sso" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-sso" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/log-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/log-eureka-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-eureka-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-eureka-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-eureka-server" charset="UTF-8" />
@@ -27,15 +34,20 @@
     <file url="file://$PROJECT_DIR$/log-mapper" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-mapper" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-mapper" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/log-mapper" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/log-pojo" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-pojo" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-pojo" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-pojo" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-queue" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-queue" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-queue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/log-queue" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-rest" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-rest" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-rest" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/log-rest" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/log-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/log-service" charset="UTF-8" />
