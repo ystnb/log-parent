@@ -9,4 +9,4 @@ eureka:
     eviction-interval-timer-in-ms: 5000
 spring:
   redis:
-    host: 140.143.227.194  # 此处为不缓存页面
+    host: 192.168.125.128  # 此处为不缓存页面

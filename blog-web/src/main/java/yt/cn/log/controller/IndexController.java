@@ -44,9 +44,9 @@ public class IndexController {
 			results=Utils.jsonToList(jsonObject.get("itemList").toString(), BlogModel.class);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "/index";
+			return "index";
 		}
 		model.addAttribute("results", results);
-		return "/index";
+		return "index";
 	}
 }

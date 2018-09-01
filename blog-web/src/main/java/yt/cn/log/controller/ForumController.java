@@ -45,6 +45,6 @@ public class ForumController {
 	public String forum(Model model){
 		String forumSolr=feignClient.forumQuery("*:*");
 		System.out.println(forumSolr);
-		return "/forum";
+		return "forum";
 	}
 }

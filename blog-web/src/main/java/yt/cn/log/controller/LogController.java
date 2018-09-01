@@ -11,10 +11,10 @@ public class LogController {
 
 	@GetMapping("weAre")
 	public String weAre(Model model){
-		return "/log";
+		return "log";
 	}
 	@GetMapping("advice")
 	public String advice(Model model){
-		return "/advice";
+		return "advice";
 	}
 }

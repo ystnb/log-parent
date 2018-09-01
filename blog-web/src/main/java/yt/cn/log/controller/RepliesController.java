@@ -71,11 +71,11 @@ public class RepliesController {
 	 */
 	@GetMapping("addBlog")
 	public String addBlog(){
-		return "/addBlog";
+		return "addBlog";
 	}
 	@GetMapping("addforum")
 	public String addforum(){
-		return "/addForum";
+		return "addForum";
 	}
 	/**
 	 * 添加博客
