@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 
-import yt.cn.log.model.BlogSearch;
+import yn.cn.log.model.BlogSearch;
 import yt.cn.log.service.BlogSearchService;
 
 @RequestMapping("blog")

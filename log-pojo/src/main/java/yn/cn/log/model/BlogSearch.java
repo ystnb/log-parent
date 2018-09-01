@@ -1,4 +1,4 @@
-package yt.cn.log.model;
+package yn.cn.log.model;
 
 import java.util.List;
 

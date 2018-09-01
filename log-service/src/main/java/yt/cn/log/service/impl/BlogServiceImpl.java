@@ -2,11 +2,14 @@ package yt.cn.log.service.impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import yn.cn.log.model.BlogModel;
 import yt.cn.log.dao.BlogMapper;
 import yt.cn.log.pojo.Blog;
 import yt.cn.log.pojo.BlogExample;
@@ -66,6 +69,17 @@ public class BlogServiceImpl implements BlogService {
 			return list;
 		}
 		return null;
+	}
+
+	public List<BlogModel> selectByExample(BlogExample example){
+		List<Blog> list = blogMapper.selectByExample(example);
+		return list.stream().map(this::convert).collect(Collectors.toList());
+	}
+
+	private BlogModel convert(Blog blog){
+		BlogModel blogModel = new BlogModel();
+		BeanUtils.copyProperties(blog,new BlogModel());
+		return blogModel;
 	}
 
 }

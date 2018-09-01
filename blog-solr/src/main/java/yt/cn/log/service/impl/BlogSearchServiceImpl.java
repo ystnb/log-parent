@@ -1,13 +1,11 @@
 package yt.cn.log.service.impl;
 
-import javax.naming.directory.SearchResult;
-
 import org.apache.solr.client.solrj.SolrQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import yn.cn.log.model.BlogSearch;
 import yt.cn.log.dao.BlogSearchDao;
-import yt.cn.log.model.BlogSearch;
 import yt.cn.log.service.BlogSearchService;
 
 @Service

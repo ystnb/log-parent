@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.alibaba.fastjson.JSONObject;
 
-import yt.cn.log.common.result.BlogSearchResult;
+import yn.cn.log.model.BlogModel;
 import yt.cn.log.common.result.Utils;
 import yt.cn.log.dao.DateBlogMapper;
 import yt.cn.log.dao.DescBlogMapper;
@@ -38,10 +38,10 @@ public class IndexController {
 		model.addAttribute("descBlogs", descBlogs);
 		model.addAttribute("dateBlogs", dateBlogs);
 		String solr=feignClient.blogQuery("*:*");
-		List<BlogSearchResult> results=null;
+		List<BlogModel> results=null;
 		try {
 			JSONObject jsonObject=JSONObject.parseObject(solr);
-			results=Utils.jsonToList(jsonObject.get("itemList").toString(), BlogSearchResult.class);
+			results=Utils.jsonToList(jsonObject.get("itemList").toString(), BlogModel.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "/index";

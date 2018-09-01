@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import yt.cn.log.dao.ForumSearchDao;
-import yt.cn.log.model.BlogSearch;
 import yt.cn.log.model.ForumResult;
 import yt.cn.log.service.ForumSearchService;
 

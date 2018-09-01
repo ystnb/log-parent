@@ -1,6 +1,7 @@
-package yt.cn.log.common.result;
+package yn.cn.log.model;
 
-public class BlogSearchResult {
+public class BlogModel {
+	
 	private String id;
     private String title;
     private String author;
@@ -43,6 +44,7 @@ public class BlogSearchResult {
 	public void setFrequency(Integer frequency) {
 		this.frequency = frequency;
 	}
+	
     
 
 }

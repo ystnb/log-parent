@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -13,9 +12,9 @@ import org.apache.solr.common.SolrDocumentList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import yn.cn.log.model.BlogModel;
+import yn.cn.log.model.BlogSearch;
 import yt.cn.log.dao.BlogSearchDao;
-import yt.cn.log.model.BlogModel;
-import yt.cn.log.model.BlogSearch;
 
 @Service
 public class BlogSearchDaoImpl implements BlogSearchDao {
