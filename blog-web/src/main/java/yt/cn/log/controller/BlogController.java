@@ -58,10 +58,10 @@ public class BlogController {
 			results=Utils.jsonToList(jsonObject.get("itemList").toString(), BlogModel.class);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "/little";
+			return "little";
 		}
 		model.addAttribute("results", results);
-		return "/little";
+		return "little";
 	}
 
 	@GetMapping("deial/{id}")
@@ -73,13 +73,13 @@ public class BlogController {
 		model.addAttribute("descBlogs", descBlogs);
 		model.addAttribute("dateBlogs", dateBlogs);
 		model.addAttribute("blog", blog);
-		return "/litleDeial";
+		return "litleDeial";
 	}
 	@GetMapping("userDeial/{author}")
 	public String userDeial(@PathVariable String author,Model model){
 		List<Blog> blog=blogService.getByExamel(author);
 		model.addAttribute("iblog", blog);
-		return "/userDeail";
+		return "userDeail";
 	}
 
 	

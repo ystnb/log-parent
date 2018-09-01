@@ -19,67 +19,73 @@ import yt.cn.log.service.BlogService;
 @Service
 @Transactional
 public class BlogServiceImpl implements BlogService {
-	
-	@Autowired
-	private BlogMapper blogMapper;
 
-	@Override
-	public List<Blog> queryGetByNames(Map map) {
-		List<Blog> list=blogMapper.queryGetByNames(map);
-		if(list.size()>0){
-			return list;
-		}
-		return null;
-	}
-	/**
-	 * 查询最新5条博客
-	 */
-	@Override
-	public List<Blog> getCreateTimeDesc() {
-		return blogMapper.getCreateTimeDesc();
-	}
-	/**
-	 * 查询点击最多的5条博客
-	 */
-	@Override
-	public List<Blog> getFrequencyDesc() {
-		return blogMapper.getFrequencyDesc();
-	}
-	@Override
-	public Blog getById(String id) {
-		return blogMapper.selectByPrimaryKey(id);
-	}
-	@Override
-	public void insert(Blog blog) {
-		blogMapper.insert(blog);
-		
-	}
-	@Override
-	public void insertBlog(Blog blog) {
-		blogMapper.insertBlog(blog);
-		
-	}
-	@Override
-	public List<Blog> getByExamel(String author) {
-		BlogExample blogExample=new BlogExample();
-		Criteria criteria=blogExample.createCriteria();
-		criteria.andAuthorEqualTo(author);
-		List<Blog> list=blogMapper.selectByExample(blogExample);
-		if(list.size()>0){
-			return list;
-		}
-		return null;
-	}
+    @Autowired
+    private BlogMapper blogMapper;
 
-	public List<BlogModel> selectByExample(BlogExample example){
-		List<Blog> list = blogMapper.selectByExample(example);
-		return list.stream().map(this::convert).collect(Collectors.toList());
-	}
+    @Override
+    public List<Blog> queryGetByNames(Map map) {
+        List<Blog> list = blogMapper.queryGetByNames(map);
+        if (list.size() > 0) {
+            return list;
+        }
+        return null;
+    }
 
-	private BlogModel convert(Blog blog){
-		BlogModel blogModel = new BlogModel();
-		BeanUtils.copyProperties(blog,new BlogModel());
-		return blogModel;
-	}
+    /**
+     * 查询最新5条博客
+     */
+    @Override
+    public List<Blog> getCreateTimeDesc() {
+        return blogMapper.getCreateTimeDesc();
+    }
+
+    /**
+     * 查询点击最多的5条博客
+     */
+    @Override
+    public List<Blog> getFrequencyDesc() {
+        return blogMapper.getFrequencyDesc();
+    }
+
+    @Override
+    public Blog getById(String id) {
+        return blogMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void insert(Blog blog) {
+        blogMapper.insert(blog);
+
+    }
+
+    @Override
+    public void insertBlog(Blog blog) {
+        blogMapper.insertBlog(blog);
+
+    }
+
+    @Override
+    public List<Blog> getByExamel(String author) {
+        BlogExample blogExample = new BlogExample();
+        Criteria criteria = blogExample.createCriteria();
+        criteria.andAuthorEqualTo(author);
+        List<Blog> list = blogMapper.selectByExample(blogExample);
+        if (list.size() > 0) {
+            return list;
+        }
+        return null;
+    }
+
+    public List<BlogModel> selectByExample(BlogExample example) {
+        List<Blog> list = blogMapper.selectByExample(example);
+        return list.stream().map(this::convert).collect(Collectors.toList());
+    }
+
+    private BlogModel convert(Blog blog) {
+        BlogModel blogModel = new BlogModel();
+        BeanUtils.copyProperties(blog, blogModel);
+        return blogModel;
+    }
 
 }

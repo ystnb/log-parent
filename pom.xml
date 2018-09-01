@@ -121,7 +121,6 @@
     </dependencies>
 
     <modules>
-        <module>log-eureka-server</module>
         <module>log-pojo</module>
         <module>log-service</module>
         <module>log-mapper</module>
