@@ -5,15 +5,17 @@ spring:
     name: log-sso
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://140.143.227.194:3306/blog?characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://192.168.140.165:3306/cloud_log?characterEncoding=utf-8&useSSL=false
+   # url: jdbc:mysql://140.143.227.194:3306/blog?characterEncoding=utf-8&useSSL=false
     username: root
-    password: ijavo@$%&*123A
+    password: 123456
   redis:
     # cluster:
   #   nodes: 192.168.140.130:7000,192.168.140.130:7001,192.168.140.130:7002,192.168.140.130:7003,192.168.140.130:7004,192.168.140.130:7005,192.168.140.129:7006,192.168.140.129:7007,192.168.140.129:7008,192.168.140.129:7009
      # database: 0 #注释的为单机版
-     host: 127.0.0.1
-     port: 6194
+   #  host: 140.143.227.194
+     host: 192.168.140.130
+     port: 6379
      timeout: 3000
   thymeleaf:
     prefix: classpath:/templates/
@@ -24,7 +26,7 @@ eureka:
     leaseExpirationDurationInSeconds: 10
   client:
     serviceUrl:
-      defaultZone: http://127.0.0.1:8761/eureka/
+      defaultZone: http://192.168.140.165:8761/eureka/
 
 mybatis:
   mapper-locations: classpath:cn/mapping/*.xml

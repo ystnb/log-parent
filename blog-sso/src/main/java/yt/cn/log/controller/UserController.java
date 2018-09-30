@@ -21,7 +21,7 @@ public class UserController {
 		return "sso服务启动成功！";
 	}
 	
-	@GetMapping("login")
+	@GetMapping("/")
 	public String login(String redirect,Model model){
 		model.addAttribute("redirect", redirect);
 		return "/login";
@@ -38,7 +38,7 @@ public class UserController {
 			e.printStackTrace();
 			return "/register";
 		}
-		return "/login";
+		return "/";
 		
 	}
 }

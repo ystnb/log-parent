@@ -89,10 +89,10 @@ public class RepliesController {
 		blog.setCreateTime(new Date());
 		try {
 			blogService.insertBlog(blog);
-			kaFeignClient.blogKafka(JSONObject.toJSONString(blog));
+			//kaFeignClient.blogKafka(JSONObject.toJSONString(blog));
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "redirect:/replies/addBlog";
+			return "redirect:replies/addBlog";
 		}
 		return "redirect:/blog/blog";
 		
@@ -108,7 +108,7 @@ public class RepliesController {
 		forum.setCreateTime(new Date());
 		try {
 			forumService.insertBody(forum);
-			kaFeignClient.forumKafka(JSONObject.toJSONString(forum));
+			//kaFeignClient.forumKafka(JSONObject.toJSONString(forum));
 		} catch (Exception e) {
 			return "redirect:/replies/addForum";
 		}

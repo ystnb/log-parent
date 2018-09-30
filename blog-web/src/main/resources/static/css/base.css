@@ -2,7 +2,7 @@
 /* CSS Document */
 * { margin: 0; padding: 0 }
 body { font: 12px "ËÎÌו", Arial, Helvetica, sans-serif; color: #756F71 }
-img { border: 0; display: block }
+/*img { border: 0; display: block }*/
 ul { list-style: none; }
 a:link, a:visited {text-decoration: none; color: #333;}
 .left { float: left; }
@@ -23,7 +23,22 @@ nav a:hover { text-decoration: none }
 article { width: 1000px; margin: 20px auto; overflow: hidden }
 aside { width: 250px; }
 footer { text-align: center; line-height: 40px; border-top: #E8E8E8 1px solid ; width:1000px; margin:auto}
-
+.caselist  input{
+	margin:10px 0;
+	padding:5px 0
+}
+.caselist textarea{
+	resize:none
+}
+.caselist label{
+	display:block
+}
+.caselist span{
+	width:50px;
+	float:left;
+	line-height:44px;
+	font-size:14px;
+}
 
 
 

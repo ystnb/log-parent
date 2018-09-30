@@ -2,6 +2,7 @@ package yt.cn.log.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import yt.cn.log.controller.BaseURLService;
 import yt.cn.log.pojo.lUser;
 import yt.cn.log.service.SsoFeignClient;
 
+
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
 	@Autowired
@@ -28,22 +30,36 @@ public class LoginInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		String token="";
+		String uToken=request.getParameter("uToken");
+		HttpSession session=request.getSession();
+		if(StringUtils.isBlank(uToken)){
+			token=CookieUtils.getCookieValue(request, "TT_TOKEN");
+			 //token=(String) session.getAttribute("TT_TOKEN");
+		}else{
+			CookieUtils.setDoCookie(response, "TT_TOKEN", uToken);
+			//session.setAttribute("TT_TOKEN", uToken);
+			token=uToken;
+		}
 		lUser user=null;
-		System.out.println(urlService.SSO_BASE_URL+urlService.SSO_PAGE_LOGIN);
-		String token=CookieUtils.getCookieValue(request, "TT_TOKEN");
-		String url="http://"+request.getServerName()+":"+request.getServerPort()+request.getRequestURI();
+	
 		if(StringUtils.isBlank(token)){
-			response.sendRedirect(urlService.SSO_BASE_URL+urlService.SSO_PAGE_LOGIN+"?redirect="+url);
+			response.sendRedirect(urlService.SSO_BASE_URL+urlService.SSO_PAGE_LOGIN+"?redirect="+request.getRequestURI());
 			return false;
 		}
 		String userJson=ssoFeignClient.token(token);
 		if(StringUtils.isBlank(userJson)){
-			response.sendRedirect(urlService.SSO_BASE_URL+urlService.SSO_PAGE_LOGIN+"?redirect="+url);
+			response.sendRedirect(urlService.SSO_BASE_URL+urlService.SSO_PAGE_LOGIN+"?redirect="+request.getRequestURI());
 			return false;
 		}
-		JSONObject jsonObject=JSONObject.parseObject(userJson);
-		user=JSONObject.toJavaObject(jsonObject, lUser.class);
-		request.setAttribute("user",user);
+		try {
+			JSONObject jsonObject=JSONObject.parseObject(userJson);
+			user=JSONObject.toJavaObject(jsonObject, lUser.class);
+			request.setAttribute("user",user);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 		return true;
 	}
 

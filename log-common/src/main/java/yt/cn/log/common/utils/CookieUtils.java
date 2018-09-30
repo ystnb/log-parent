@@ -3,6 +3,8 @@ package yt.cn.log.common.utils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -146,13 +148,14 @@ public final class CookieUtils {
             Cookie cookie = new Cookie(cookieName, cookieValue);
             if (cookieMaxage > 0)
                 cookie.setMaxAge(cookieMaxage);
-            if (null != request) {// 设置域名的cookie
+            /*if (null != request) {// 设置域名的cookie
             	String domainName = getDomainName(request);
             	System.out.println(domainName);
                 if (!"localhost".equals(domainName)) {
-                	cookie.setDomain(domainName);
+                	cookie.setDomain(request.getServletContext().toString());
                 }
-            }
+            }*/
+           
             cookie.setPath("/");
             response.addCookie(cookie);
         } catch (Exception e) {
@@ -225,5 +228,46 @@ public final class CookieUtils {
         }
         return domainName;
     }
+    
+    public static HttpServletResponse setDoCookie(HttpServletResponse response, String name, String value) {
+        // new一个Cookie对象,键值对为参数
+        Cookie cookie = new Cookie(name, value);
+        // tomcat下多应用共享
+        cookie.setPath("/");
+        // 如果cookie的值中含有中文时，需要对cookie进行编码，不然会产生乱码
+        try {
+            URLEncoder.encode(value, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        cookie.setMaxAge(24*60*60);
+        // 将Cookie添加到Response中,使之生效
+        response.addCookie(cookie); // addCookie后，如果已经存在相同名字的cookie，则最新的覆盖旧的cookie
+        return response;
+    }
+   
+    
+    
+    public static String getCookieByName(HttpServletRequest request, String name) {
+    	Cookie[] cookies = request.getCookies();
+    	if (cookies == null || name == null) {
+            return null;
+        }
+    	String rtnValue=null;
+        for(Cookie cookie : cookies){
+            if(cookie.getName().equals(name)){
+            	rtnValue = cookie.getValue();
+              
+            }
+         }
+		return rtnValue; 
+    }
+
+   
+    
+    
+    
+    
+    
 
 }

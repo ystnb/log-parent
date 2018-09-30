@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,11 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSON;
 
 import yt.cn.log.common.result.LogResult;
+import yt.cn.log.common.utils.CookieUtils;
 import yt.cn.log.pojo.lUser;
 import yt.cn.log.service.RedisService;
 import yt.cn.log.service.lUserService;
 
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("sso")
 @RestController
 public class LoginController {
@@ -32,11 +34,11 @@ public class LoginController {
 	
 	@GetMapping("token/{token}")
 	public String token(@PathVariable("token")String token){
-		String userToken=(String) redisService.get("TT_TOKEN_"+token);
+		String userToken=(String) redisService.get(token);
 		if(StringUtils.isBlank(userToken)){
 			return null;
 		}else{
-			redisService.set("TT_TOKEN_"+token, userToken, 60*60*60);
+			redisService.set(token, userToken, 60*60);
 		}
 		return userToken;
 	}
@@ -76,6 +78,15 @@ public class LoginController {
 			return "existed";
 		}
 		
+	}
+	
+	@GetMapping("cookie")
+	public String cookie(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String cookie=CookieUtils.getCookieValue(request, "TT_TOKEN");
+		if(StringUtils.isBlank(cookie)){
+			return null;
+		}
+		return cookie;
 	}
 
 }

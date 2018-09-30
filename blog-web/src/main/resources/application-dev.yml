@@ -5,22 +5,22 @@ spring:
     name: log-web
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-   # url: jdbc:mysql://192.168.140.165:3306/cloud_log?characterEncoding=utf-8&useSSL=false
-    url: jdbc:mysql://140.143.227.194:3306/blog?characterEncoding=utf-8
+    url: jdbc:mysql://192.168.140.165:3306/cloud_log?characterEncoding=utf-8&useSSL=false
+   # url: jdbc:mysql://140.143.227.194:3306/blog?characterEncoding=utf-8
     username: root
-    password:
+    password: 123456
   thymeleaf:
     prefix: classpath:/templates/
-    cache: false
+    cache: false # 此处为不缓存页面
   redis:
-    host: 192.168.125.128  # 此处为不缓存页面
+    host: 192.168.140.130 
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 5
     leaseExpirationDurationInSeconds: 10
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://192.168.140.165:8761/eureka/
 feign:
   hystrix:
     enabled: true

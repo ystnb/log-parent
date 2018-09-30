@@ -9,11 +9,13 @@
 <div th:replace="common/header::html" ></div>
 </header>
 <article class="aboutcon">
-<h1 class="t_nav"><span>高大尚的中心</span><a href="javascript:void(0)" class="n1">个人中心</a></h1>
-<h3><a th:href="@{/blog/userDeial/}+${user.name}">查看个人博客</a></h3>
+<h1 class="t_nav">
+	<span>高大尚的中心</span><a href="javascript:void(0)" class="n1">个人中心</a>
+	<a style="color:#000; font-size:14px; padding-left:10px" th:href="@{/blog/userDeial/}+${user.name}">查看个人博客</a>
+</h1>
 <div class="about">
 
-  <h2>个人资料</h2>
+ <h2>个人资料</h2>
  <h3>姓名：<span th:text="${user.name}"></span></h3>
  <h3 > 昵称：<span th:text="${user.nickname}"></span></h3>
  <h3 >邮箱：<span th:text="${user.email}"></span></h3>

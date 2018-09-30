@@ -1,0 +1,34 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link th:href="@{/css/style.css}" rel="stylesheet"/>
+<link th:href="@{/css/base.css}" rel="stylesheet"/>
+
+</head>
+<body>
+<header>
+ <div th:replace="common/header::html" ></div>
+</header>
+<article class="blogs">
+<h1 class="t_nav"><span>记录点点，与大家分享。 </span><a href="javascript:void(0)" class="n1">博客</a></h1>
+<div class="caselist left">
+	<form  th:action="@{/replies/saveBlog}" method="post">
+	<input style="width:200px;" name="author"  id="author" type="hidden"  th:value="${user.name}"/>
+		<label><span>标题：</span><input style="width:200px;" name="title"/></label>
+		<label><span>分类：</span><input style="width:200px;" name="attribute"/></label>
+		<label><span>内容：</span><textarea rows="4" cols="4" style="height:400px;width:800px;" name="content"></textarea></label>
+		<input type="submit"  value="保存" style="width:80px; float:right"/>
+	</form>
+    <div class="blank"></div>
+ </div>
+</article>
+<footer>
+     <div th:replace="common/footer::html" ></div>
+</footer>
+<script th:src="@{/js/addforum.js}"></script>
+<script>
+
+
+</script>
+</body>
+</html>

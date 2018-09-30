@@ -23,5 +23,6 @@ public interface SsoFeignClient {
 	String addUser(@RequestBody lUser user);
 	@GetMapping("login")
 	public String Userlogin();
+	
 
 }

@@ -13,11 +13,10 @@
 <div class="caselist left">
 	<form  th:action="@{/replies/saveForum}" method="post">
 		<input style="width:200px;" name="fAuthor" id="fAuthor" type="hidden" />
-		
-		标题：<input style="width:200px;" name="fTitle"/>
-		分类：<input style="width:200px;" name="type"/>
-		内容：<textarea rows="4" cols="4" style="height:400px;width:800px;" name="fContent"></textarea>
-		<input type="submit"  value="保存" style="width:80px;"/>
+		<label><span>标题：</span><input style="width:200px;" name="fTitle"/></label>
+		<label><span>分类：</span><input style="width:200px;" name="type"/></label>
+		<label><span>内容：</span><textarea rows="4" cols="4" style="height:400px;width:800px;" name="fContent"></textarea></label>
+		<input type="submit"  value="保存" style="width:80px; float:right"/>
 	</form>
     <div class="blank"></div>
    
