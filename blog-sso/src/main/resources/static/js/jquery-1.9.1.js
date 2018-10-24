@@ -11,6 +11,8 @@
  *
  * Date: 2013-2-4
  */
+var regEmail = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
+
 (function( window, undefined ) {
 
 // Can't do this because several apps including ASP.NET trace

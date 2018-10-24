@@ -38,5 +38,10 @@
             <artifactId>fastjson</artifactId>
             <version>${alibaba.version}</version>
         </dependency>
+          <dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-email</artifactId>
+		    <version>${commons-mail.version}</version>
+		</dependency>
   </dependencies>
 </project>

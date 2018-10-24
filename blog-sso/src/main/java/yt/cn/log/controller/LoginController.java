@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSON;
 
 import yt.cn.log.common.result.LogResult;
 import yt.cn.log.common.utils.CookieUtils;
+import yt.cn.log.common.utils.SendMailUtil;
 import yt.cn.log.pojo.lUser;
 import yt.cn.log.service.RedisService;
 import yt.cn.log.service.lUserService;
@@ -73,6 +74,14 @@ public class LoginController {
 			return "error";
 		}
 		if(user==null){
+			try {
+				String code=SendMailUtil.getSixDom();
+				SendMailUtil.CodeEmail("邮件验证",code ,email);
+				redisService.set(email, code, 2*60);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "error";
+			}
 			return "success";
 		}else{
 			return "existed";
@@ -87,6 +96,22 @@ public class LoginController {
 			return null;
 		}
 		return cookie;
+	}
+	@GetMapping("code")
+	public String code(@RequestParam("email") String email){
+		String code=SendMailUtil.getSixDom();
+		String subject="邮件验证";
+		try {
+			String result=	SendMailUtil.CodeEmail(subject, code, email);
+			if(result.equals("SUCCESS")){
+				redisService.set(email, code, 100);
+				return "ok";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+		return "error";
 	}
 
 }

@@ -56,6 +56,7 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
         </dependency>
+       
     </dependencies>
     <build>
         <plugins>
@@ -67,10 +68,10 @@
                 </configuration>
             </plugin>
         </plugins>
-        <resources>
+       <!--  <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <!-- 资源根目录排除各环境的配置，防止在生成目录中多余其它目录 -->
+                资源根目录排除各环境的配置，防止在生成目录中多余其它目录
                 <excludes>
                     <exclude>application-dev.yml</exclude>
                 </excludes>
@@ -78,6 +79,6 @@
             <resource>
                 <directory>src/main/resources/${profiles.active}</directory>
             </resource>
-        </resources>
+        </resources> -->
     </build>
 </project>
