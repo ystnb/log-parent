@@ -63,7 +63,11 @@ public class LoginController {
 		}
 		return JSON.toJSON(logResult).toString();
 	}
-	
+	/**
+	 * 判断邮箱是否重复
+	 * @param email
+	 * @return
+	 */
 	@PostMapping("check")
 	public String check(@RequestParam("email") String email){
 		lUser user=null;
@@ -74,14 +78,6 @@ public class LoginController {
 			return "error";
 		}
 		if(user==null){
-			try {
-				String code=SendMailUtil.getSixDom();
-				SendMailUtil.CodeEmail("邮件验证",code ,email);
-				redisService.set(email, code, 2*60);
-			} catch (Exception e) {
-				e.printStackTrace();
-				return "error";
-			}
 			return "success";
 		}else{
 			return "existed";
@@ -97,14 +93,19 @@ public class LoginController {
 		}
 		return cookie;
 	}
-	@GetMapping("code")
+	/**
+	 * 根据邮箱获取验证码
+	 * @param email
+	 * @return
+	 */
+	@PostMapping("code")
 	public String code(@RequestParam("email") String email){
 		String code=SendMailUtil.getSixDom();
 		String subject="邮件验证";
 		try {
 			String result=	SendMailUtil.CodeEmail(subject, code, email);
 			if(result.equals("SUCCESS")){
-				redisService.set(email, code, 100);
+				redisService.set(email, code, 2*60);
 				return "ok";
 			}
 		} catch (Exception e) {

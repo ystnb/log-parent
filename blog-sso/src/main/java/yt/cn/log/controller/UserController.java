@@ -1,5 +1,7 @@
 package yt.cn.log.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,14 +33,16 @@ public class UserController {
 		return "/register";
 	}
 	@PostMapping("addUser")
-	public String addUser(@ModelAttribute lUser user){
+	public String addUser(@ModelAttribute lUser user,HttpServletRequest request){
+		String code =request.getParameter("code");
+		
 		try {
 			userService.insertBody(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "/register";
 		}
-		return "/";
+		return "redirect:/";
 		
 	}
 }

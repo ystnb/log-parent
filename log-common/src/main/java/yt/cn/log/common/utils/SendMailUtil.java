@@ -60,7 +60,7 @@ public class SendMailUtil {
 		 * @return
 		 * @throws Exception
 		 */
-		public static String CodeEmail(String subject, String message,String emailName) throws Exception{
+	/*	public static String CodeEmail(String subject, String message,String emailName) throws Exception{
 			try {
 				HtmlEmail email = new HtmlEmail();
 				email.setHostName("smtp.163.com");
@@ -76,6 +76,31 @@ public class SendMailUtil {
 				return "FAIL";
 			}
 			return "SUCCESS";
+		}*/
+		public static String CodeEmail(String subject, String message,String emailName) throws Exception{
+			try {
+				HtmlEmail email = new HtmlEmail();
+				email.setHostName("smtp.163.com");
+				email.setAuthentication("yijavot@163.com", "yuantao123");
+				email.setCharset("UTF-8");
+				email.setFrom("yijavot@163.com","邮件验证");
+				email.addTo(emailName,"验证码");
+				email.setSubject(subject);
+				email.setHtmlMsg(message);
+				email.send();
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "FAIL";
+			}
+			return "SUCCESS";
+		}
+		
+		public static void main(String[] args) {
+			try {
+				CodeEmail("ss","ss","413143906@qq.com");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 
