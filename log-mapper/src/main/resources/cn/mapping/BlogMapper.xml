@@ -369,5 +369,10 @@
       0,0, #{blog.content,jdbcType=LONGVARCHAR}
 		)
 	</insert>
-  
+  <select id="getLikeContent" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from blog
+    where content like concat(concat('%',#{content}),'%') and disabled=0 ORDER BY create_time DESC  LIMIT 0, 100
+  </select>
 </mapper>

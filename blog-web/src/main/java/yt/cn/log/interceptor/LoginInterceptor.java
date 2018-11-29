@@ -2,6 +2,7 @@ package yt.cn.log.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +30,25 @@ public class LoginInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		lUser user=null;
+		
 		System.out.println(urlService.SSO_BASE_URL+urlService.SSO_PAGE_LOGIN);
-		String token=CookieUtils.getCookieValue(request, "TT_TOKEN");
+		
+		String returnToken=request.getParameter("token");
+		if(!StringUtils.isBlank(returnToken)){
+			CookieUtils.setCookie(request, response, "BK_TOKEN", returnToken);
+		}
+		String token=CookieUtils.getCookieValue(request, "BK_TOKEN");
 		String url="http://"+request.getServerName()+":"+request.getServerPort()+request.getRequestURI();
 		if(StringUtils.isBlank(token)){
 			response.sendRedirect(urlService.SSO_BASE_URL+urlService.SSO_PAGE_LOGIN+"?redirect="+url);
 			return false;
 		}
+		//
+		HttpSession httpSession = request.getSession();
+		
+		
 		String userJson=ssoFeignClient.token(token);
+		httpSession.setAttribute("user", userJson);
 		if(StringUtils.isBlank(userJson)){
 			response.sendRedirect(urlService.SSO_BASE_URL+urlService.SSO_PAGE_LOGIN+"?redirect="+url);
 			return false;

@@ -11,12 +11,12 @@
 <article class="blogs">
 <h1 class="t_nav"><span>记录点点，与大家分享。 </span><a href="javascript:void(0)" class="n1">论坛</a></h1>
 <div class="caselist left">
-	<form  th:action="@{/replies/saveForum}" method="post">
-		<input style="width:200px;" name="fAuthor" id="fAuthor" type="hidden" th:value="${user.name}"/>
+	<form  th:action="@{/replies/saveBlog}" method="post">
+		<input style="width:200px;" name="author" id="author" type="hidden" th:value="${user.name}"/>
 		
-		标题：<input style="width:200px;" name="fTitle"/>
-		分类：<input style="width:200px;" name="type"/>
-		内容：<textarea rows="4" cols="4" style="height:400px;width:800px;" name="fContent"></textarea>
+		标题：<input style="width:200px;" name="title"/>
+		分类：<input style="width:200px;" name="attribute"/>
+		内容：<textarea rows="4" cols="4" style="height:400px;width:800px;" name="content"></textarea>
 		<input type="submit"  value="保存" style="width:80px;"/>
 	</form>
     <div class="blank"></div>

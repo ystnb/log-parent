@@ -7,6 +7,3 @@ eureka:
   server:
     enable-self-preservation: false
     eviction-interval-timer-in-ms: 5000
-spring:
-  redis:
-    host: 140.143.227.194  # 此处为不缓存页面

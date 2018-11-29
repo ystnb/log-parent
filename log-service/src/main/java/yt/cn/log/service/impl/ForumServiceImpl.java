@@ -34,5 +34,9 @@ public class ForumServiceImpl implements ForumService {
 		forumMapper.insertBody(forum);
 		
 	}
+	@Override
+	public List<Forum> getLikeContent(String fcontent) {
+		return forumMapper.getLikeContent(fcontent);
+	}
 
 }

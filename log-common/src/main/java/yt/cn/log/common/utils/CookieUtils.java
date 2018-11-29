@@ -146,13 +146,13 @@ public final class CookieUtils {
             Cookie cookie = new Cookie(cookieName, cookieValue);
             if (cookieMaxage > 0)
                 cookie.setMaxAge(cookieMaxage);
-            if (null != request) {// 设置域名的cookie
+           /* if (null != request) {// 设置域名的cookie
             	String domainName = getDomainName(request);
             	System.out.println(domainName);
                 if (!"localhost".equals(domainName)) {
                 	cookie.setDomain(domainName);
                 }
-            }
+            }*/
             cookie.setPath("/");
             response.addCookie(cookie);
         } catch (Exception e) {
@@ -176,7 +176,7 @@ public final class CookieUtils {
             Cookie cookie = new Cookie(cookieName, cookieValue);
             if (cookieMaxage > 0)
                 cookie.setMaxAge(cookieMaxage);
-            if (null != request) {// 设置域名的cookie
+           if (null != request) {// 设置域名的cookie
             	String domainName = getDomainName(request);
             	System.out.println(domainName);
                 if (!"localhost".equals(domainName)) {

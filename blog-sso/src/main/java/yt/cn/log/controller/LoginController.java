@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSON;
 
 import yt.cn.log.common.result.LogResult;
+import yt.cn.log.common.utils.EmailUtils;
 import yt.cn.log.pojo.lUser;
 import yt.cn.log.service.RedisService;
 import yt.cn.log.service.lUserService;
@@ -30,13 +31,15 @@ public class LoginController {
 	@Autowired
 	private lUserService userService;
 	
+	
+	
 	@GetMapping("token/{token}")
 	public String token(@PathVariable("token")String token){
-		String userToken=(String) redisService.get("TT_TOKEN_"+token);
+		String userToken=(String) redisService.get("BK_TOKEN_"+token);
 		if(StringUtils.isBlank(userToken)){
 			return null;
 		}else{
-			redisService.set("TT_TOKEN_"+token, userToken, 60*60*60);
+			redisService.set("BK_TOKEN_"+token, userToken, 60*60*60);
 		}
 		return userToken;
 	}
@@ -53,6 +56,8 @@ public class LoginController {
 			}else{
 				logResult=logResult.error(500, "用户错误了");
 			}
+			int code =(int)((Math.random()*9+1)*100000);
+			String result=EmailUtils.SendEmailCode("邮箱验证", email, String.valueOf(code));
 		} catch (Exception e) {
 			e.printStackTrace();
 			logResult=logResult.error(400, e.getMessage());
@@ -76,6 +81,11 @@ public class LoginController {
 			return "existed";
 		}
 		
+	}
+	
+	public static void main(String[] args) {
+		int code =(int)((Math.random()*9+1)*100000);
+		System.out.println(code);
 	}
 
 }

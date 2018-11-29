@@ -333,4 +333,11 @@
       #{forum.fAuthor,jdbcType=VARCHAR}, #{forum.createTime,jdbcType=TIMESTAMP}, 0, 
       #{forum.replies,jdbcType=INTEGER}, #{forum.fContent,jdbcType=LONGVARCHAR})
 	</insert>
+	
+	  <select id="getLikeContent" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from blog
+    where f_content like concat(concat('%',#{fcontent}),'%') and disabled=0 ORDER BY create_time DESC  LIMIT 0, 100
+  </select>
 </mapper>

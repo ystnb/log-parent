@@ -21,8 +21,8 @@ public class WebConfig extends WebMvcConfigurerAdapter{
  	        // 注册拦截器
  	        InterceptorRegistration ir = registry.addInterceptor(myAuthInterceptor());
  	        // 配置拦截的路径
- 	        ir.addPathPatterns("/replies/*");
- 	        ir.addPathPatterns("/luser/*");
+ 	        ir.addPathPatterns("/replies/**");
+ 	        ir.addPathPatterns("/luser/**");
  	    }
 	
 

@@ -21,5 +21,7 @@ public interface BlogService {
 	List<Blog> getByExamel(String author);
 
 	List<BlogModel> selectByExample(BlogExample example);
+	
+	List<Blog> getLikeContent(String content);
 
 }

@@ -39,4 +39,5 @@ public interface ForumMapper {
     int updateByPrimaryKey(Forum record);
     List<Forum> queryGetByNames(Map map);
     void insertBody(@Param("forum") Forum forum);
+    List<Forum> getLikeContent(String fcontent);
 }

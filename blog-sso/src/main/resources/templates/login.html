@@ -55,13 +55,15 @@
             data:$("#loginform").serialize(),
             dataType: "json",
             success: function (result) {
+            	
             	if(result.status==200){
             		alert("登录成功");
             		if(redirectUrl!=""){
-            			  setTimeout("javascript:location.href='"+redirectUrl+"'", 0);
+            			  setTimeout("javascript:location.href='"+redirectUrl+"?token="+result.data+"'", 0);
             		}else{
             		
-            			 setTimeout("javascript:location.href='http://www.ijavo.cn'", 0);
+            			 setTimeout("javascript:location.href='http://www.bk.com:8002?token="+result.data+"'", 0);
+            			// setTimeout("javascript:location.href='http://www.ijavo.cn'", 0);
             		}
             	}else{
             		alert("邮箱或密码错误，请重新输入！");

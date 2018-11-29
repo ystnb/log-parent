@@ -11,6 +11,6 @@ public interface ForumService {
 	List<Forum> queryGetByNames(Map map);
 	void insertBody(Forum forum);
 	
-	
+	List<Forum> getLikeContent(String fcontent);
 
 }

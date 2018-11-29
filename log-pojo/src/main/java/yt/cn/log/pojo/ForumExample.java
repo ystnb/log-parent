@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import yt.cn.log.pojo.BlogExample.Criteria;
+
 public class ForumExample {
     protected String orderByClause;
 
@@ -244,6 +246,73 @@ public class ForumExample {
             addCriterion("f_title not between", value1, value2, "fTitle");
             return (Criteria) this;
         }
+        
+        
+        public Criteria andfContentIsNotNull() {
+        	addCriterion("fContent is not null");
+        	return (Criteria) this;
+        }
+        
+        public Criteria andfContentEqualTo(String value) {
+        	addCriterion("fContent =", value, "fContent");
+        	return (Criteria) this;
+        }
+        
+        public Criteria andfContentNotEqualTo(String value) {
+        	addCriterion("fContent <>", value, "fContent");
+        	return (Criteria) this;
+        }
+        
+        public Criteria andfContentGreaterThan(String value) {
+        	addCriterion("fContent >", value, "fContent");
+        	return (Criteria) this;
+        }
+        
+        public Criteria andfContentGreaterThanOrEqualTo(String value) {
+        	addCriterion("fContent >=", value, "fContent");
+        	return (Criteria) this;
+        }
+        
+        public Criteria andfContentLessThan(String value) {
+        	addCriterion("fContent <", value, "fContent");
+        	return (Criteria) this;
+        }
+        
+        public Criteria andfContentLessThanOrEqualTo(String value) {
+        	addCriterion("fContent <=", value, "fContent");
+        	return (Criteria) this;
+        }
+        
+        public Criteria andfContentLike(String value) {
+        	addCriterion("fContent like", value, "fContent");
+        	return (Criteria) this;
+        }
+        
+        public Criteria andfContentNotLike(String value) {
+        	addCriterion("fContent not like", value, "fContent");
+        	return (Criteria) this;
+        }
+        
+        public Criteria andfContentIn(List<String> values) {
+        	addCriterion("fContent in", values, "fContent");
+        	return (Criteria) this;
+        }
+        
+        public Criteria andfContentNotIn(List<String> values) {
+        	addCriterion("fContent not in", values, "fContent");
+        	return (Criteria) this;
+        }
+        
+        public Criteria andfContentBetween(String value1, String value2) {
+        	addCriterion("fContent between", value1, value2, "fContent");
+        	return (Criteria) this;
+        }
+        
+        public Criteria andfContentNotBetween(String value1, String value2) {
+        	addCriterion("ffContent not between", value1, value2, "fContent");
+        	return (Criteria) this;
+        }
+
 
         public Criteria andTypeIsNull() {
             addCriterion("type is null");

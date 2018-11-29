@@ -88,4 +88,10 @@ public class BlogServiceImpl implements BlogService {
         return blogModel;
     }
 
+	@Override
+	public List<Blog> getLikeContent(String content) {
+		
+		return blogMapper.getLikeContent(content);
+	}
+
 }

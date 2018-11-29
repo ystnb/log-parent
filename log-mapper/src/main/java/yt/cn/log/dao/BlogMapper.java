@@ -41,4 +41,5 @@ public interface BlogMapper {
     List<Blog> getCreateTimeDesc();
     List<Blog> getFrequencyDesc();
     void insertBlog(@Param("blog") Blog blog);
+    List<Blog> getLikeContent(String content);
 }

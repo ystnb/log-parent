@@ -13,7 +13,15 @@
 <a th:href="@{/log/weAre}"><span>版本日志</span><span class="en">Version log</span></a>
 <a th:href="@{/log/advice}"><span>宝贵意见</span><span class="en">Valuable advice</span></a>
 <a th:href="@{/luser/personal}"><span>个人中心</span>
-<span class="en" style="top:200px;"><button onclick="login()">登录</button>&nbsp;<button onclick="register()">注册</button></span>
+<span class="en" style="top:200px;">
+<div th:if="${session.user}==null">
+<button onclick="login()">登录</button>&nbsp;<button onclick="register()">注册</button>
+</div>
+<div th:if="${session.user}!=null">
+<button onclick="logout()">退出</button>
+</div>
+
+</span>
 </a>
 </nav>
   <nav></nav>
@@ -24,6 +32,8 @@
  function register(){
 	 setTimeout("javascript:location.href='http://www.ijavo.cn:8020/register'", 0);
  }
+ 
+ 
  </script>
 </body>
 </html>
