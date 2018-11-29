@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, f_title, type, f_author, create_time, disabled, replies
+    id, f_title, type, f_author, create_time, disabled, replies,f_content
   </sql>
   <sql id="Blob_Column_List" >
     f_content
@@ -337,7 +337,7 @@
 	  <select id="getLikeContent" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from blog
+    from forum
     where f_content like concat(concat('%',#{fcontent}),'%') and disabled=0 ORDER BY create_time DESC  LIMIT 0, 100
   </select>
 </mapper>

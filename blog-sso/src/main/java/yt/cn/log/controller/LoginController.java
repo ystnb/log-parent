@@ -39,7 +39,7 @@ public class LoginController {
 		if(StringUtils.isBlank(userToken)){
 			return null;
 		}else{
-			redisService.set("BK_TOKEN_"+token, userToken, 60*60*60);
+			redisService.set("BK_TOKEN_"+token, userToken, 60*60);
 		}
 		return userToken;
 	}

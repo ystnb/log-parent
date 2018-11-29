@@ -11,11 +11,14 @@ import org.springframework.stereotype.Service;
 import yn.cn.log.model.BlogModel;
 import yn.cn.log.model.BlogSearch;
 import yt.cn.log.pojo.BlogExample;
+import yt.cn.log.pojo.Forum;
 import yt.cn.log.service.BlogService;
 import yt.cn.log.service.ForumService;
 import yt.cn.log.service.SolrFeignClient;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class HystrixSolrClient implements SolrFeignClient {
@@ -31,7 +34,7 @@ public class HystrixSolrClient implements SolrFeignClient {
 	public String blogQuery(String q) {
 		List list=null;
 		logger.warn("solr查询失败：query={}",q);
-		if(StringUtils.isBlank(q)){
+		if(StringUtils.isBlank(q)||q.equals("*:*")){
 			list = blogService.selectByExample(new BlogExample()); 
 		}else{
 			list = blogService.getLikeContent(q);
@@ -43,8 +46,14 @@ public class HystrixSolrClient implements SolrFeignClient {
 
 	@Override
 	public String forumQuery(String q) {
-		
-		return "服务正忙，请稍后重试！";
+		List<Forum> forums=null;
+		if(StringUtils.isBlank(q)||q.equals("*:*")){
+			Map map =new HashMap();
+			forums=forumService.queryGetByNames(map);
+		}else{
+			forums=forumService.getLikeContent(q);
+		}
+		return JSON.toJSONString(forums);
 	}
 
 }

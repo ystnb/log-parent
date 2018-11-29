@@ -51,7 +51,7 @@ public class lUserServiceImpl implements lUserService {
 		
 		if(users.size()>0){
 			String token=UUID.randomUUID().toString();
-			redisService.set("BK_TOKEN_"+token, JsonUtils.objectToJson(users.get(0)), 30*60*60);
+			redisService.set("BK_TOKEN_"+token, JsonUtils.objectToJson(users.get(0)), 30*60);
 		//	CookieUtils.setCookie(request,response, "TT_TOKEN", token); //用户登录将token 写入cookie
 			return token;
 		}else{

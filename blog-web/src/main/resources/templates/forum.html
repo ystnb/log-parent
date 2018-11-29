@@ -8,9 +8,14 @@
 <div th:replace="common/header::html" ></div>
 </header>
 <article class="blogs">
-<h1 class="t_nav">论坛首页          <input  id="q"/><button onclick="fourmsearch()">搜索</button></h1>
+<h1 class="t_nav">论坛首页          <input  id="q" th:value="${q}" /><button onclick="fourmsearch()">搜索</button></h1>
 <div class="newblog left" id="forumlist">
-  
+    <div th:each="list:${listForum}">
+  		<h2 th:text="${list.fTitle}"></h2><p class="dateview">作者：<span th:text="${list.fAuthor}"></span>
+  		<span>分类:<span th:text="${list.type}"></span></span></p>
+  		<ul class="nlist"><p style="width:400px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;" th:text="${list.fContent}">
+			</p><a th:href="@{'/forum/deail/'+${list.id}}"   class="readmore">阅读全文>></a></ul>
+  </div>
     <div class="line"></div>
      
     <div class="blank"></div>
@@ -38,6 +43,7 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 <footer>
      <div th:replace="common/footer::html" ></div>
 </footer>
+<script th:src="@{/js/jquery-1.9.1.js}"></script>
 <script th:src="@{/js/fourm.js}"></script>
 <script>
 
